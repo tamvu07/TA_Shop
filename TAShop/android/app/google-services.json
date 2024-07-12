@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778615648424",
+    "project_id": "tashop-e828b",
+    "storage_bucket": "tashop-e828b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778615648424:android:1769eb2df8e698e1f3529d",
+        "android_client_info": {
+          "package_name": "com.example.ta_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT3VUAnmtMkqhNMKLmynCb1M1z7tFhtJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
