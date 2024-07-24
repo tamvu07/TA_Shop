@@ -4,10 +4,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  print("a2........runApp().....");
   runApp(const MyApp());
 }
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -49,6 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {});
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
