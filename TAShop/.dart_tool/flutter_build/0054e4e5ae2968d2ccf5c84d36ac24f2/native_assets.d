@@ -1,0 +1,1 @@
+ /Users/tamvu/Project_tam/TAShop/TA_Shop/TAShop/.dart_tool/flutter_build/0054e4e5ae2968d2ccf5c84d36ac24f2/native_assets.yaml: 
