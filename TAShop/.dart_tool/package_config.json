@@ -87,7 +87,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Users/tamvu/fvm/bin/versions/3.22.1/packages/flutter",
+      "rootUri": "file:///Users/tamvu/fvm/versions/3.22.0/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -99,13 +99,13 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///Users/tamvu/fvm/bin/versions/3.22.1/packages/flutter_test",
+      "rootUri": "file:///Users/tamvu/fvm/versions/3.22.0/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///Users/tamvu/fvm/bin/versions/3.22.1/packages/flutter_web_plugins",
+      "rootUri": "file:///Users/tamvu/fvm/versions/3.22.0/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -165,7 +165,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Users/tamvu/fvm/bin/versions/3.22.1/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/tamvu/fvm/versions/3.22.0/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -230,10 +230,10 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-07-12T04:32:05.617392Z",
+  "generated": "2024-08-02T07:09:10.954289Z",
   "generator": "pub",
-  "generatorVersion": "3.4.1",
-  "flutterRoot": "file:///Users/tamvu/fvm/bin/versions/3.22.1",
-  "flutterVersion": "3.22.1",
+  "generatorVersion": "3.4.0",
+  "flutterRoot": "file:///Users/tamvu/fvm/versions/3.22.0",
+  "flutterVersion": "3.22.0",
   "pubCache": "file:///Users/tamvu/.pub-cache"
 }
