@@ -110,6 +110,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "go_router",
+      "rootUri": "file:///Users/tamvu/.pub-cache/hosted/pub.dev/go_router-14.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "leak_tracker",
       "rootUri": "file:///Users/tamvu/.pub-cache/hosted/pub.dev/leak_tracker-10.0.4",
       "packageUri": "lib/",
@@ -132,6 +138,18 @@
       "rootUri": "file:///Users/tamvu/.pub-cache/hosted/pub.dev/lints-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "logger",
+      "rootUri": "file:///Users/tamvu/.pub-cache/hosted/pub.dev/logger-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "logging",
+      "rootUri": "file:///Users/tamvu/.pub-cache/hosted/pub.dev/logging-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "matcher",
@@ -230,7 +248,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-08-02T07:09:10.954289Z",
+  "generated": "2024-08-02T10:05:04.295945Z",
   "generator": "pub",
   "generatorVersion": "3.4.0",
   "flutterRoot": "file:///Users/tamvu/fvm/versions/3.22.0",
