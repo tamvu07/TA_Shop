@@ -28,6 +28,9 @@ class _AddUsersPageState extends State<AddUsersPage> {
   late TextEditingController linkFacebookTextController;
   late TextEditingController ageTextController;
 
+  bool _isBoyChecked = true;
+  bool _isGirlChecked = false;
+
   @override
   void initState() {
     nameTextController = TextEditingController();
@@ -394,33 +397,35 @@ class _AddUsersPageState extends State<AddUsersPage> {
             height: MediaQuery.of(context).size.height / 1.5,
             child: Stack(
               children: [
-                Column(
-                  children: [
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Text("Thông tin"),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 15.0),
+                          child: Text("Thông tin"),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    _buildTextField(
-                        "Tên:", "Nhập tên...", _nodeName, nameTextController),
-                    const SizedBox(height: 20),
-                    _buildTextField("Số điện thoại:", "Nhập số điện thoại...",
-                        _nodePhone, phoneTextController),
-                    const SizedBox(height: 20),
-                    _buildTextField("Link Zalo:", "Nhập link Zalo...",
-                        _nodeLinkZalo, linkZaloTextController),
-                    const SizedBox(height: 20),
-                    _buildTextField("Link Facebook:", "Nhập link Facebook...",
-                        _nodeLinkFacebook, linkFacebookTextController),
-                    const SizedBox(height: 20),
-                    _buildTextField(
-                        "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
-                    const SizedBox(height: 20),
-                    _buildContentCheckBox()
-                  ],
+                      const SizedBox(height: 20),
+                      _buildTextField(
+                          "Tên:", "Nhập tên...", _nodeName, nameTextController),
+                      const SizedBox(height: 20),
+                      _buildTextField("Số điện thoại:", "Nhập số điện thoại...",
+                          _nodePhone, phoneTextController),
+                      const SizedBox(height: 20),
+                      _buildTextField("Link Zalo:", "Nhập link Zalo...",
+                          _nodeLinkZalo, linkZaloTextController),
+                      const SizedBox(height: 20),
+                      _buildTextField("Link Facebook:", "Nhập link Facebook...",
+                          _nodeLinkFacebook, linkFacebookTextController),
+                      const SizedBox(height: 20),
+                      _buildTextField(
+                          "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
+                      const SizedBox(height: 20),
+                      _buildContentCheckBox()
+                    ],
+                  ),
                 ),
                 Positioned(
                     right: 0.0,
@@ -513,7 +518,7 @@ class _AddUsersPageState extends State<AddUsersPage> {
         borderRadius: BorderRadius.circular(8.0), // Set the border radius
       ),
       width: MediaQuery.of(context).size.width / 1.5,
-      height: 100.0,
+      height: 120.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -532,6 +537,43 @@ class _AddUsersPageState extends State<AddUsersPage> {
             height: 1,
             color: Colors.grey,
           ),
+
+          Row(
+              children: [
+                Checkbox(
+                  value: _isBoyChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      _isBoyChecked = value!;
+                      if (_isBoyChecked) {
+                        _isGirlChecked = false;
+                      }
+                       logger.v("a2....._isBoyChecked......$_isBoyChecked......._isGirlChecked.....is:$_isGirlChecked");
+                    });
+                  },
+                ),
+                SizedBox(width: 8.0),
+                Text('Boy'),
+              ],
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: _isGirlChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      _isGirlChecked = value!;
+                      if (_isGirlChecked) {
+                        _isBoyChecked = false;
+                      }
+                    });
+                  },
+                ),
+                SizedBox(width: 8.0),
+                Text('Girl'),
+              ],
+            ),
+
         ],
       ),
     );
