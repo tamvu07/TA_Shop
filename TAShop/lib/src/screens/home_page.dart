@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ta_shop/src/core/app_assets.dart';
 import 'package:logger/logger.dart';
 
@@ -39,19 +40,19 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Expanded(
-            child: _buildItemDetail(() {
-              print("a2.........1...........");
+            child: _buildItemDetail("Add Users", () {
+              context.go('/addUsers');
               logger.v("a2.....tam1......");
             }),
           ),
           Expanded(
-            child: _buildItemDetail(() {
-               print("a2.........2...........");
+            child: _buildItemDetail("ABC", () {
+              print("a2.........2...........");
             }),
           ),
           Expanded(
-            child: _buildItemDetail(() {
-               print("a2.........3...........");
+            child: _buildItemDetail("XYZ", () {
+              print("a2.........3...........");
             }),
           ),
         ],
@@ -59,35 +60,36 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildItemDetail(Function() actionClick) {
-      return GestureDetector(
-        onTap: () {
-actionClick();
-        },
-        child: Center(
-                  child: Column(
-                children: [
-                  ClipOval(
-                    child: SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: Container(
-                        color: Color(0xFFF2A43F),
-                        child: Transform.scale(
-                          scale: 0.5,
-                          child: Image.asset(AppAssets.icAddPersons),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text("ABC",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w100)),
-                ],
-              )),
-      );
+  Widget _buildItemDetail(String name, Function() actionClick) {
+    return GestureDetector(
+      onTap: () {
+        actionClick();
+      },
+      child: Center(
+          child: Column(
+        children: [
+          ClipOval(
+            child: SizedBox(
+              width: 80,
+              height: 80,
+              child: Container(
+                color: Color(0xFFF2A43F),
+                child: Transform.scale(
+                  scale: 0.5,
+                  child: Image.asset(AppAssets.icAddPersons),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            name,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w100)),
+        ],
+      )),
+    );
   }
 }

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ta_shop/src/screens/add_users_page.dart';
 import 'package:ta_shop/src/screens/home_page.dart';
 
 final GoRouter router = GoRouter(
@@ -11,11 +12,9 @@ final GoRouter router = GoRouter(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
-    // GoRoute(
-    //   path: '/details/:id',
-    //   builder: (BuildContext context, GoRouterState state) => DetailsPage(
-    //     id: state.params['id']!,
-    //   ),
-    // ),
+    GoRoute(
+      path: '/addUsers',
+      builder: (BuildContext context, GoRouterState state) => const AddUsersPage(),
+    ),
   ],
 );
