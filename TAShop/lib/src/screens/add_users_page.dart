@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ta_shop/src/core/app_assets.dart';
 import 'package:logger/logger.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:keyboard_actions/keyboard_actions_config.dart';
 
 final logger = Logger();
 
@@ -14,6 +16,137 @@ class AddUsersPage extends StatefulWidget {
 }
 
 class _AddUsersPageState extends State<AddUsersPage> {
+  final FocusNode _nodeName = FocusNode();
+
+  late TextEditingController nameTextController;
+
+  @override
+  void initState() {
+    nameTextController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    nameTextController.dispose();
+    super.dispose();
+  }
+
+  KeyboardActionsConfig _buildConfig(BuildContext context) {
+    return KeyboardActionsConfig(
+      keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
+      keyboardBarColor: Colors.grey[200],
+      nextFocus: true,
+      actions: [
+        KeyboardActionsItem(
+          focusNode: _nodeName,
+          displayActionBar: false,
+          footerBuilder: (_) => PreferredSize(
+              preferredSize: const Size.fromHeight(50),
+              child: SizedBox(
+                height: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _nodeName.unfocus();
+                        // _nodeNewPassword.unfocus();
+                        // _nodeConfirmPassword.unfocus();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: Text(
+                          'Close',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
+        // KeyboardActionsItem(
+        //   focusNode: _nodeNewPassword,
+        //   displayActionBar: false,
+        //   footerBuilder: (_) => PreferredSize(
+        //       preferredSize: const Size.fromHeight(50),
+        //       child: SizedBox(
+        //         height: 40,
+        //         child: Row(
+        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //           children: [
+        //             Expanded(
+        //               flex: 1,
+        //               child: Container(),
+        //             ),
+        //             GestureDetector(
+        //               onTap: () {
+        //                 _nodeOldPassword.unfocus();
+        //                 _nodeNewPassword.unfocus();
+        //                 _nodeConfirmPassword.unfocus();
+        //               },
+        //               child: const Padding(
+        //                 padding: EdgeInsets.only(right: 20.0),
+        //                 child: Text(
+        //                   'Close',
+        //                   style: TextStyle(
+        //                       fontSize: 18.0,
+        //                       fontWeight: FontWeight.bold,
+        //                       color: Colors.grey),
+        //                 ),
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       )),
+        // ),
+        // KeyboardActionsItem(
+        //   focusNode: _nodeConfirmPassword,
+        //   displayActionBar: false,
+        //   footerBuilder: (_) => PreferredSize(
+        //       preferredSize: const Size.fromHeight(50),
+        //       child: SizedBox(
+        //         height: 40,
+        //         child: Row(
+        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //           children: [
+        //             Expanded(
+        //               flex: 1,
+        //               child: Container(),
+        //             ),
+        //             GestureDetector(
+        //               onTap: () {
+        //                 _nodeOldPassword.unfocus();
+        //                 _nodeNewPassword.unfocus();
+        //                 _nodeConfirmPassword.unfocus();
+        //               },
+        //               child: const Padding(
+        //                 padding: EdgeInsets.only(right: 20.0),
+        //                 child: Text(
+        //                   'Close',
+        //                   style: TextStyle(
+        //                       fontSize: 18.0,
+        //                       fontWeight: FontWeight.bold,
+        //                       color: Colors.grey),
+        //                 ),
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       )),
+        // ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +175,11 @@ class _AddUsersPageState extends State<AddUsersPage> {
           children: [
             const SizedBox(height: 10),
             _buildContentTitle(() {
-              logger.v("a2.....tam1......");
+              showAlertAddUser(context);
             }),
             const SizedBox(height: 20),
             _buildContentItem("Nguyen An", "222999333", () {}),
+            // const SizedBox(height: 20),
           ],
         ),
       ),
@@ -53,34 +187,34 @@ class _AddUsersPageState extends State<AddUsersPage> {
   }
 
   Widget _buildContentTitle(Function() actionClick) {
-    return GestureDetector(
-      onTap: () {
-        actionClick();
-      },
-      child: SizedBox(
-        height: 50.0,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            const Center(
-              child: Text(
-                "Khách Hàng",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold),
-              ),
+    return SizedBox(
+      height: 50.0,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          const Center(
+            child: Text(
+              "Khách Hàng",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold),
             ),
-            Positioned(
-              top: 10,
-              right: 20,
+          ),
+          Positioned(
+            top: 10,
+            right: 20,
+            child: GestureDetector(
+              onTap: () {
+                actionClick();
+              },
               child: SizedBox(
                   height: 30.0,
                   width: 30.0,
                   child: Image.asset(AppAssets.icAdd)),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -158,6 +292,110 @@ class _AddUsersPageState extends State<AddUsersPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  showAlertAddUser(BuildContext context) {
+    // set up the AlertDialog
+    Dialog alert = Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: Colors.white.withOpacity(1.0)),
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.height / 1.5,
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15.0),
+                      child: Text("Thông tin"),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _buildNameTextField()
+                ],
+              ),
+              Positioned(
+                  right: 0.0,
+                  child: MouseRegion(
+                    cursor: MaterialStateMouseCursor.clickable,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              radius: 14.0,
+                              backgroundColor: Colors.transparent,
+                              child: Icon(Icons.close,
+                                  color: Colors.red, size: 30),
+                            ),
+                          )),
+                    ),
+                  ))
+            ],
+          )),
+    );
+
+    // Show the Dialog
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return true;
+          },
+          child: alert,
+        );
+      },
+    );
+  }
+
+  Widget _buildNameTextField() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 1.5,
+      height: 70.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Tên:  ",
+              style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w100)),
+          const SizedBox(height: 5),
+          TextFormField(
+            focusNode: _nodeName,
+            controller: nameTextController,
+            decoration: const InputDecoration(
+              hintText: 'Nhập tên...',
+              hintStyle: TextStyle(
+                color: Colors.grey, // Set the placeholder color
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue, // Set the focused border color
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.grey, // Set the enabled border color
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
