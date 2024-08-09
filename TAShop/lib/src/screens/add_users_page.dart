@@ -407,23 +407,19 @@ class _AddUsersPageState extends State<AddUsersPage> {
                     _buildTextField(
                         "Tên:", "Nhập tên...", _nodeName, nameTextController),
                     const SizedBox(height: 20),
-                    _buildTextField(
-                        "Số điện thoại:",
-                        "Nhập số điện thoại...",
-                        _nodePhone,
-                        phoneTextController),
+                    _buildTextField("Số điện thoại:", "Nhập số điện thoại...",
+                        _nodePhone, phoneTextController),
                     const SizedBox(height: 20),
                     _buildTextField("Link Zalo:", "Nhập link Zalo...",
                         _nodeLinkZalo, linkZaloTextController),
                     const SizedBox(height: 20),
-                    _buildTextField(
-                        "Link Facebook:",
-                        "Nhập link Facebook...",
-                        _nodeLinkFacebook,
-                        linkFacebookTextController),
+                    _buildTextField("Link Facebook:", "Nhập link Facebook...",
+                        _nodeLinkFacebook, linkFacebookTextController),
                     const SizedBox(height: 20),
                     _buildTextField(
                         "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
+                    const SizedBox(height: 20),
+                    _buildContentCheckBox()
                   ],
                 ),
                 Positioned(
@@ -467,8 +463,8 @@ class _AddUsersPageState extends State<AddUsersPage> {
     );
   }
 
-  Widget _buildTextField(String titleValue, String hintValue,
-      FocusNode _node, TextEditingController textController) {
+  Widget _buildTextField(String titleValue, String hintValue, FocusNode _node,
+      TextEditingController textController) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 1.5,
       height: 70.0,
@@ -501,6 +497,40 @@ class _AddUsersPageState extends State<AddUsersPage> {
                 ),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContentCheckBox() {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey, // Set the border color
+          width: 1.0, // Set the border width
+        ),
+        borderRadius: BorderRadius.circular(8.0), // Set the border radius
+      ),
+      width: MediaQuery.of(context).size.width / 1.5,
+      height: 100.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(height: 10),
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Text("Chọn giới tính:",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10.0,
+                    fontWeight: FontWeight.w100)),
+          ),
+          Container(height: 10),
+          Container(
+            height: 1,
+            color: Colors.grey,
           ),
         ],
       ),
