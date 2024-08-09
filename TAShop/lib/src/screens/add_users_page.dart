@@ -384,60 +384,72 @@ class _AddUsersPageState extends State<AddUsersPage> {
     // set up the AlertDialog
     Dialog alert = Dialog(
       backgroundColor: Colors.transparent,
-      child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.white.withOpacity(1.0)),
-          width: MediaQuery.of(context).size.width / 1.5,
-          height: MediaQuery.of(context).size.height / 1.5,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  const Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 15.0),
-                      child: Text("Thông tin"),
+      child: KeyboardActions(
+        config: _buildConfig(context),
+        child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Colors.white.withOpacity(1.0)),
+            width: MediaQuery.of(context).size.width / 1.5,
+            height: MediaQuery.of(context).size.height / 1.5,
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Text("Thông tin"),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildNameTextField(
-                      "Tên:", "Nhập tên...", _nodeName, nameTextController),
-                  const SizedBox(height: 20),
-                  _buildNameTextField("Số điện thoại:", "Nhập số điện thoại...",
-                      _nodePhone, phoneTextController),
-                  _buildNameTextField("Link Zalo:", "Nhập link Zalo...",
-                      _nodeLinkZalo, linkZaloTextController),
-                  _buildNameTextField("Link Facebook:", "Nhập link Facebook...",
-                      _nodeLinkFacebook, linkFacebookTextController),
-                  _buildNameTextField(
-                      "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
-                ],
-              ),
-              Positioned(
-                  right: 0.0,
-                  child: MouseRegion(
-                    cursor: MaterialStateMouseCursor.clickable,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              radius: 14.0,
-                              backgroundColor: Colors.transparent,
-                              child: Icon(Icons.close,
-                                  color: Colors.red, size: 30),
-                            ),
-                          )),
-                    ),
-                  ))
-            ],
-          )),
+                    const SizedBox(height: 20),
+                    _buildTextField(
+                        "Tên:", "Nhập tên...", _nodeName, nameTextController),
+                    const SizedBox(height: 20),
+                    _buildTextField(
+                        "Số điện thoại:",
+                        "Nhập số điện thoại...",
+                        _nodePhone,
+                        phoneTextController),
+                    const SizedBox(height: 20),
+                    _buildTextField("Link Zalo:", "Nhập link Zalo...",
+                        _nodeLinkZalo, linkZaloTextController),
+                    const SizedBox(height: 20),
+                    _buildTextField(
+                        "Link Facebook:",
+                        "Nhập link Facebook...",
+                        _nodeLinkFacebook,
+                        linkFacebookTextController),
+                    const SizedBox(height: 20),
+                    _buildTextField(
+                        "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
+                  ],
+                ),
+                Positioned(
+                    right: 0.0,
+                    child: MouseRegion(
+                      cursor: MaterialStateMouseCursor.clickable,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Align(
+                            alignment: Alignment.topRight,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                radius: 14.0,
+                                backgroundColor: Colors.transparent,
+                                child: Icon(Icons.close,
+                                    color: Colors.red, size: 30),
+                              ),
+                            )),
+                      ),
+                    ))
+              ],
+            )),
+      ),
     );
 
     // Show the Dialog
@@ -455,7 +467,7 @@ class _AddUsersPageState extends State<AddUsersPage> {
     );
   }
 
-  Widget _buildNameTextField(String titleValue, String hintValue,
+  Widget _buildTextField(String titleValue, String hintValue,
       FocusNode _node, TextEditingController textController) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 1.5,
