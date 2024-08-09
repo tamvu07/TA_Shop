@@ -17,18 +17,34 @@ class AddUsersPage extends StatefulWidget {
 
 class _AddUsersPageState extends State<AddUsersPage> {
   final FocusNode _nodeName = FocusNode();
+  final FocusNode _nodePhone = FocusNode();
+  final FocusNode _nodeLinkZalo = FocusNode();
+  final FocusNode _nodeLinkFacebook = FocusNode();
+  final FocusNode _nodeAge = FocusNode();
 
   late TextEditingController nameTextController;
+  late TextEditingController phoneTextController;
+  late TextEditingController linkZaloTextController;
+  late TextEditingController linkFacebookTextController;
+  late TextEditingController ageTextController;
 
   @override
   void initState() {
     nameTextController = TextEditingController();
+    phoneTextController = TextEditingController();
+    linkZaloTextController = TextEditingController();
+    linkFacebookTextController = TextEditingController();
+    ageTextController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     nameTextController.dispose();
+    phoneTextController.dispose();
+    linkZaloTextController.dispose();
+    linkFacebookTextController.dispose();
+    ageTextController.dispose();
     super.dispose();
   }
 
@@ -54,9 +70,7 @@ class _AddUsersPageState extends State<AddUsersPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        _nodeName.unfocus();
-                        // _nodeNewPassword.unfocus();
-                        // _nodeConfirmPassword.unfocus();
+                        resetNode();
                       },
                       child: const Padding(
                         padding: EdgeInsets.only(right: 20.0),
@@ -73,78 +87,148 @@ class _AddUsersPageState extends State<AddUsersPage> {
                 ),
               )),
         ),
-        // KeyboardActionsItem(
-        //   focusNode: _nodeNewPassword,
-        //   displayActionBar: false,
-        //   footerBuilder: (_) => PreferredSize(
-        //       preferredSize: const Size.fromHeight(50),
-        //       child: SizedBox(
-        //         height: 40,
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //           children: [
-        //             Expanded(
-        //               flex: 1,
-        //               child: Container(),
-        //             ),
-        //             GestureDetector(
-        //               onTap: () {
-        //                 _nodeOldPassword.unfocus();
-        //                 _nodeNewPassword.unfocus();
-        //                 _nodeConfirmPassword.unfocus();
-        //               },
-        //               child: const Padding(
-        //                 padding: EdgeInsets.only(right: 20.0),
-        //                 child: Text(
-        //                   'Close',
-        //                   style: TextStyle(
-        //                       fontSize: 18.0,
-        //                       fontWeight: FontWeight.bold,
-        //                       color: Colors.grey),
-        //                 ),
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       )),
-        // ),
-        // KeyboardActionsItem(
-        //   focusNode: _nodeConfirmPassword,
-        //   displayActionBar: false,
-        //   footerBuilder: (_) => PreferredSize(
-        //       preferredSize: const Size.fromHeight(50),
-        //       child: SizedBox(
-        //         height: 40,
-        //         child: Row(
-        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //           children: [
-        //             Expanded(
-        //               flex: 1,
-        //               child: Container(),
-        //             ),
-        //             GestureDetector(
-        //               onTap: () {
-        //                 _nodeOldPassword.unfocus();
-        //                 _nodeNewPassword.unfocus();
-        //                 _nodeConfirmPassword.unfocus();
-        //               },
-        //               child: const Padding(
-        //                 padding: EdgeInsets.only(right: 20.0),
-        //                 child: Text(
-        //                   'Close',
-        //                   style: TextStyle(
-        //                       fontSize: 18.0,
-        //                       fontWeight: FontWeight.bold,
-        //                       color: Colors.grey),
-        //                 ),
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       )),
-        // ),
+        KeyboardActionsItem(
+          focusNode: _nodePhone,
+          displayActionBar: false,
+          footerBuilder: (_) => PreferredSize(
+              preferredSize: const Size.fromHeight(50),
+              child: SizedBox(
+                height: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        resetNode();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: Text(
+                          'Close',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
+        KeyboardActionsItem(
+          focusNode: _nodeLinkZalo,
+          displayActionBar: false,
+          footerBuilder: (_) => PreferredSize(
+              preferredSize: const Size.fromHeight(50),
+              child: SizedBox(
+                height: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        resetNode();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: Text(
+                          'Close',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
+        KeyboardActionsItem(
+          focusNode: _nodeLinkFacebook,
+          displayActionBar: false,
+          footerBuilder: (_) => PreferredSize(
+              preferredSize: const Size.fromHeight(50),
+              child: SizedBox(
+                height: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        resetNode();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: Text(
+                          'Close',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
+        KeyboardActionsItem(
+          focusNode: _nodeAge,
+          displayActionBar: false,
+          footerBuilder: (_) => PreferredSize(
+              preferredSize: const Size.fromHeight(50),
+              child: SizedBox(
+                height: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        resetNode();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: Text(
+                          'Close',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
       ],
     );
+  }
+
+  void resetNode() {
+    _nodeName.unfocus();
+    _nodePhone.unfocus();
+    _nodeLinkZalo.unfocus();
+    _nodeLinkFacebook.unfocus();
+    _nodeAge.unfocus();
   }
 
   @override
@@ -318,7 +402,17 @@ class _AddUsersPageState extends State<AddUsersPage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  _buildNameTextField()
+                  _buildNameTextField(
+                      "Tên:", "Nhập tên...", _nodeName, nameTextController),
+                  const SizedBox(height: 20),
+                  _buildNameTextField("Số điện thoại:", "Nhập số điện thoại...",
+                      _nodePhone, phoneTextController),
+                  _buildNameTextField("Link Zalo:", "Nhập link Zalo...",
+                      _nodeLinkZalo, linkZaloTextController),
+                  _buildNameTextField("Link Facebook:", "Nhập link Facebook...",
+                      _nodeLinkFacebook, linkFacebookTextController),
+                  _buildNameTextField(
+                      "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
                 ],
               ),
               Positioned(
@@ -361,7 +455,8 @@ class _AddUsersPageState extends State<AddUsersPage> {
     );
   }
 
-  Widget _buildNameTextField() {
+  Widget _buildNameTextField(String titleValue, String hintValue,
+      FocusNode _node, TextEditingController textController) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 1.5,
       height: 70.0,
@@ -369,26 +464,26 @@ class _AddUsersPageState extends State<AddUsersPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Tên:  ",
-              style: TextStyle(
+          Text(titleValue,
+              style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 10.0,
                   fontWeight: FontWeight.w100)),
           const SizedBox(height: 5),
           TextFormField(
-            focusNode: _nodeName,
-            controller: nameTextController,
-            decoration: const InputDecoration(
-              hintText: 'Nhập tên...',
-              hintStyle: TextStyle(
+            focusNode: _node,
+            controller: textController,
+            decoration: InputDecoration(
+              hintText: hintValue,
+              hintStyle: const TextStyle(
                 color: Colors.grey, // Set the placeholder color
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.blue, // Set the focused border color
                 ),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.grey, // Set the enabled border color
                 ),
