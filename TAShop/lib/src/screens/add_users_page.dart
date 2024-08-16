@@ -266,7 +266,9 @@ class _AddUsersPageState extends State<AddUsersPage> {
               showAlertAddUser(context);
             }),
             const SizedBox(height: 20),
-            _buildContentItem("Nguyen An", "222999333", () {}),
+            _buildContentItem("Nguyen An", "222999333", () {
+              showAlertDetailInfoUser(context);
+            }),
             // const SizedBox(height: 20),
           ],
         ),
@@ -405,7 +407,11 @@ class _AddUsersPageState extends State<AddUsersPage> {
                         alignment: Alignment.center,
                         child: Padding(
                           padding: EdgeInsets.only(top: 15.0),
-                          child: Text("Thông tin"),
+                          child: Text("Thông tin",
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -608,6 +614,120 @@ class _AddUsersPageState extends State<AddUsersPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  // show detail information of user
+  showAlertDetailInfoUser(BuildContext context) {
+    // set up the AlertDialog
+    Dialog alert = Dialog(
+      backgroundColor: Colors.transparent,
+      child: KeyboardActions(
+        config: _buildConfig(context),
+        child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Colors.white.withOpacity(1.0)),
+            width: MediaQuery.of(context).size.width / 1.5,
+            height: MediaQuery.of(context).size.height / 1.5,
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 15.0),
+                          child: Text("Thông tin",
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      _buildLableTextDetailInfo("Tên:", "minh tam"),
+                      const SizedBox(height: 20),
+                      _buildLableTextDetailInfo("Số điện thoại:", "0522978530"),
+                      const SizedBox(height: 20),
+                      _buildLableTextDetailInfo("Link Zalo:", "0522978530"),
+                      const SizedBox(height: 20),
+                      _buildLableTextDetailInfo("Link Facebook:", "tamtam"),
+                      const SizedBox(height: 20),
+                      _buildLableTextDetailInfo("Tuổi:", "33"),
+                      const SizedBox(height: 20),
+                      _buildLableTextDetailInfo("Giới tính:", "Nam"),
+                    ],
+                  ),
+                ),
+                Positioned(
+                    right: 0.0,
+                    child: MouseRegion(
+                      cursor: MaterialStateMouseCursor.clickable,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Align(
+                            alignment: Alignment.topRight,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                radius: 14.0,
+                                backgroundColor: Colors.transparent,
+                                child: Icon(Icons.close,
+                                    color: Colors.red, size: 30),
+                              ),
+                            )),
+                      ),
+                    ))
+              ],
+            )),
+      ),
+    );
+
+    // Show the Dialog
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return true;
+          },
+          child: alert,
+        );
+      },
+    );
+  }
+
+  Widget _buildLableTextDetailInfo(String title, String text) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 1.5,
+      height: 60.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w100)),
+          const SizedBox(height: 5),
+          Text(text,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500)),
+          const SizedBox(height: 5),
+          Container(
+            height: 1,
+            color: Colors.grey,
+          )
+        ],
       ),
     );
   }
