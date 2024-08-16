@@ -424,7 +424,10 @@ class _AddUsersPageState extends State<AddUsersPage> {
                       _buildTextField(
                           "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
                       const SizedBox(height: 20),
-                      _buildContentCheckBox()
+                      _buildContentCheckBox(),
+                       const SizedBox(height: 20),
+                       _buildBTSave(() {}),
+                       const SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -567,11 +570,38 @@ class _AddUsersPageState extends State<AddUsersPage> {
                   Text('Girl'),
                 ],
               ),
-      
           ],
         ),
       );
         }
+      ),
+    );
+  }
+
+    Widget _buildBTSave(Function() actionClick) {
+    return GestureDetector(
+      onTap: () {
+        actionClick();
+      },
+      child: SizedBox(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color(0xFFF2A43F),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: const Center(
+              child: Text("luu",
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold)),
+            ),
+          ),
+        ),
       ),
     );
   }
