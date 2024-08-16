@@ -425,9 +425,9 @@ class _AddUsersPageState extends State<AddUsersPage> {
                           "Tuổi:", "Nhập tuổi...", _nodeAge, ageTextController),
                       const SizedBox(height: 20),
                       _buildContentCheckBox(),
-                       const SizedBox(height: 20),
-                       _buildBTSave(() {}),
-                       const SizedBox(height: 20),
+                      const SizedBox(height: 40),
+                      _buildBTSave(() {}),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -515,70 +515,76 @@ class _AddUsersPageState extends State<AddUsersPage> {
   Widget _buildContentCheckBox() {
     return ChangeNotifierProvider(
       create: (_) => GenderProvider(),
-      child: Consumer<GenderProvider>(
-        builder: (context, genderProvider, child) {
-          return Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey, // Set the border color
-            width: 1.0, // Set the border width
+      child:
+          Consumer<GenderProvider>(builder: (context, genderProvider, child) {
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey, // Set the border color
+              width: 1.0, // Set the border width
+            ),
+            borderRadius: BorderRadius.circular(8.0), // Set the border radius
           ),
-          borderRadius: BorderRadius.circular(8.0), // Set the border radius
-        ),
-        width: MediaQuery.of(context).size.width / 1.5,
-        height: 120.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(height: 10),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text("Chọn giới tính:",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.0,
-                      fontWeight: FontWeight.w100)),
-            ),
-            Container(height: 10),
-            Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-      
-            Row(
-                children: [
-                  Checkbox(
-                    value: genderProvider.isBoyChecked,
-                    onChanged: (value) {
-                      genderProvider.toggleBoy(value!);
-                    },
-                  ),
-                  SizedBox(width: 8.0),
-                  Text('Boy'),
-                ],
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: 120.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(height: 10),
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Text("Chọn giới tính:",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w100)),
+              ),
+              Container(height: 10),
+              Container(
+                height: 1,
+                color: Colors.grey,
               ),
               Row(
                 children: [
-                  Checkbox(
-                    value: genderProvider.isGirlChecked,
-                    onChanged: (value) {
-                      genderProvider.toggleGirl(value!);
-                    },
-                  ),
-                  SizedBox(width: 8.0),
-                  Text('Girl'),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      Checkbox(
+                        value: genderProvider.isBoyChecked,
+                        onChanged: (value) {
+                          genderProvider.toggleBoy(value!);
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      const Text("Nam")
+                    ],
+                  )),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      Checkbox(
+                        value: genderProvider.isGirlChecked,
+                        onChanged: (value) {
+                          genderProvider.toggleGirl(value!);
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      const Text("Nữ")
+                    ],
+                  )),
                 ],
               ),
-          ],
-        ),
-      );
-        }
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 
-    Widget _buildBTSave(Function() actionClick) {
+  Widget _buildBTSave(Function() actionClick) {
     return GestureDetector(
       onTap: () {
         actionClick();
@@ -594,11 +600,11 @@ class _AddUsersPageState extends State<AddUsersPage> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: const Center(
-              child: Text("luu",
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold)),
+              child: Text("Lưu",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold)),
             ),
           ),
         ),
