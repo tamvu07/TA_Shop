@@ -134,12 +134,17 @@ class _SMSPageState extends State<SMSPage> {
             Positioned(
               right: 20,
               bottom: 80,
-              child: CircleAvatar(
-                radius: 50.0,
-                backgroundColor: Color(0xFFF2A43F),
-                child: Transform.scale(
-                  scale: 0.7,
-                  child: Image.asset(AppAssets.icEyesMessage),
+              child: GestureDetector(
+                onTap: () {
+                  showAlertDetailInfoUser(context);
+                },
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundColor: Color(0xFFF2A43F),
+                  child: Transform.scale(
+                    scale: 0.7,
+                    child: Image.asset(AppAssets.icEyesMessage),
+                  ),
                 ),
               ),
             ),
@@ -325,15 +330,13 @@ class _SMSPageState extends State<SMSPage> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: const Align(
+                      child: Align(
                           alignment: Alignment.topRight,
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              radius: 14.0,
-                              backgroundColor: Colors.transparent,
-                              child: Icon(Icons.close,
-                                  color: Colors.red, size: 30),
+                            child: Transform.scale(
+                              scale: 0.7,
+                              child: Image.asset(AppAssets.icCloseAlert),
                             ),
                           )),
                     ),

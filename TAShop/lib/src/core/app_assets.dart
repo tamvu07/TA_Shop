@@ -7,4 +7,5 @@ class AppAssets {
   static const String icUnSelectedUser = 'assets/ic_unselected_user.png';
   static const String icSendMessage = 'assets/ic_send_message.png';
   static const String icEyesMessage = 'assets/ic_eyes_message.png';
+  static const String icCloseAlert = 'assets/ic_close_alert.png';
 }

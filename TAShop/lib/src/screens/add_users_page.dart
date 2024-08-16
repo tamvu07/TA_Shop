@@ -445,16 +445,14 @@ class _AddUsersPageState extends State<AddUsersPage> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Align(
+                        child: Align(
                             alignment: Alignment.topRight,
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                radius: 14.0,
-                                backgroundColor: Colors.transparent,
-                                child: Icon(Icons.close,
-                                    color: Colors.red, size: 30),
-                              ),
+                              child: Transform.scale(
+                              scale: 0.7,
+                              child: Image.asset(AppAssets.icCloseAlert),
+                            ),
                             )),
                       ),
                     ))
@@ -670,16 +668,14 @@ class _AddUsersPageState extends State<AddUsersPage> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Align(
+                        child: Align(
                             alignment: Alignment.topRight,
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                radius: 14.0,
-                                backgroundColor: Colors.transparent,
-                                child: Icon(Icons.close,
-                                    color: Colors.red, size: 30),
-                              ),
+                              child: Transform.scale(
+                              scale: 0.7,
+                              child: Image.asset(AppAssets.icCloseAlert),
+                            ),
                             )),
                       ),
                     ))
