@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +7,8 @@ import 'package:ta_shop/src/core/app_assets.dart';
 import 'package:logger/logger.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:keyboard_actions/keyboard_actions_config.dart';
+import 'package:ta_shop/src/provider/add_user/GenderProvider.dart';
+import 'package:provider/provider.dart';
 
 final logger = Logger();
 
@@ -27,9 +31,6 @@ class _AddUsersPageState extends State<AddUsersPage> {
   late TextEditingController linkZaloTextController;
   late TextEditingController linkFacebookTextController;
   late TextEditingController ageTextController;
-
-  bool _isBoyChecked = true;
-  bool _isGirlChecked = false;
 
   @override
   void initState() {
@@ -509,72 +510,68 @@ class _AddUsersPageState extends State<AddUsersPage> {
   }
 
   Widget _buildContentCheckBox() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey, // Set the border color
-          width: 1.0, // Set the border width
+    return ChangeNotifierProvider(
+      create: (_) => GenderProvider(),
+      child: Consumer<GenderProvider>(
+        builder: (context, genderProvider, child) {
+          return Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey, // Set the border color
+            width: 1.0, // Set the border width
+          ),
+          borderRadius: BorderRadius.circular(8.0), // Set the border radius
         ),
-        borderRadius: BorderRadius.circular(8.0), // Set the border radius
-      ),
-      width: MediaQuery.of(context).size.width / 1.5,
-      height: 120.0,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(height: 10),
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text("Chọn giới tính:",
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w100)),
-          ),
-          Container(height: 10),
-          Container(
-            height: 1,
-            color: Colors.grey,
-          ),
-
-          Row(
-              children: [
-                Checkbox(
-                  value: _isBoyChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      _isBoyChecked = value!;
-                      if (_isBoyChecked) {
-                        _isGirlChecked = false;
-                      }
-                       logger.v("a2....._isBoyChecked......$_isBoyChecked......._isGirlChecked.....is:$_isGirlChecked");
-                    });
-                  },
-                ),
-                SizedBox(width: 8.0),
-                Text('Boy'),
-              ],
+        width: MediaQuery.of(context).size.width / 1.5,
+        height: 120.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(height: 10),
+            const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text("Chọn giới tính:",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 10.0,
+                      fontWeight: FontWeight.w100)),
             ),
+            Container(height: 10),
+            Container(
+              height: 1,
+              color: Colors.grey,
+            ),
+      
             Row(
-              children: [
-                Checkbox(
-                  value: _isGirlChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      _isGirlChecked = value!;
-                      if (_isGirlChecked) {
-                        _isBoyChecked = false;
-                      }
-                    });
-                  },
-                ),
-                SizedBox(width: 8.0),
-                Text('Girl'),
-              ],
-            ),
-
-        ],
+                children: [
+                  Checkbox(
+                    value: genderProvider.isBoyChecked,
+                    onChanged: (value) {
+                      genderProvider.toggleBoy(value!);
+                    },
+                  ),
+                  SizedBox(width: 8.0),
+                  Text('Boy'),
+                ],
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: genderProvider.isGirlChecked,
+                    onChanged: (value) {
+                      genderProvider.toggleGirl(value!);
+                    },
+                  ),
+                  SizedBox(width: 8.0),
+                  Text('Girl'),
+                ],
+              ),
+      
+          ],
+        ),
+      );
+        }
       ),
     );
   }
