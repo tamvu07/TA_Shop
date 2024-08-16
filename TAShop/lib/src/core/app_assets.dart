@@ -5,4 +5,5 @@ class AppAssets {
   static const String icNextItem = 'assets/ic_next_item.png';
   static const String icSelectedUser = 'assets/ic_selected_user.png';
   static const String icUnSelectedUser = 'assets/ic_unselected_user.png';
+  static const String icSendMessage = 'assets/ic_send_message.png';
 }

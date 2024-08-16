@@ -20,19 +20,18 @@ class SMSPage extends StatefulWidget {
 }
 
 class _SMSPageState extends State<SMSPage> {
-  final FocusNode _nodeName = FocusNode();
-
-  late TextEditingController nameTextController;
+  final FocusNode _nodeMessage = FocusNode();
+  late TextEditingController messageTextController;
 
   @override
   void initState() {
-    nameTextController = TextEditingController();
+    messageTextController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    nameTextController.dispose();
+    messageTextController.dispose();
     super.dispose();
   }
 
@@ -43,7 +42,7 @@ class _SMSPageState extends State<SMSPage> {
       nextFocus: true,
       actions: [
         KeyboardActionsItem(
-          focusNode: _nodeName,
+          focusNode: _nodeMessage,
           displayActionBar: false,
           footerBuilder: (_) => PreferredSize(
               preferredSize: const Size.fromHeight(50),
@@ -80,11 +79,12 @@ class _SMSPageState extends State<SMSPage> {
   }
 
   void resetNode() {
-    _nodeName.unfocus();
+    _nodeMessage.unfocus();
   }
 
   @override
   Widget build(BuildContext context) {
+    double appBarHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
       backgroundColor: Color.fromARGB(254, 245, 245, 245),
       appBar: AppBar(
@@ -104,18 +104,25 @@ class _SMSPageState extends State<SMSPage> {
           },
         ),
       ),
-      body: Expanded(
+      body: KeyboardActions(
+        config: _buildConfig(context),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
-            _buildContentTitle(),
-            const SizedBox(height: 20),
-            _buildContentItem("Nguyen An", "222999333", () {
-              showAlertDetailInfoUser(context);
-            }),
-            // const SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                _buildContentTitle(),
+                const SizedBox(height: 20),
+                _buildContentItem("Nguyen An", "222999333", () {
+                  showAlertDetailInfoUser(context);
+                }),
+                const SizedBox(height: 20),
+              ],
+            ),
+            _buildContentFooter(),
           ],
         ),
       ),
@@ -126,14 +133,12 @@ class _SMSPageState extends State<SMSPage> {
     return const SizedBox(
       height: 50.0,
       child: Center(
-            child: Text(
-              "Gửi tin nhắn",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
+        child: Text(
+          "Gửi tin nhắn",
+          style: TextStyle(
+              color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 
@@ -250,75 +255,71 @@ class _SMSPageState extends State<SMSPage> {
     );
   }
 
-
   // show detail information of user
   showAlertDetailInfoUser(BuildContext context) {
     // set up the AlertDialog
     Dialog alert = Dialog(
       backgroundColor: Colors.transparent,
-      child: KeyboardActions(
-        config: _buildConfig(context),
-        child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: Colors.white.withOpacity(1.0)),
-            width: MediaQuery.of(context).size.width / 1.5,
-            height: MediaQuery.of(context).size.height / 1.5,
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 15.0),
-                          child: Text("Thông tin",
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                        ),
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: Colors.white.withOpacity(1.0)),
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.height / 1.5,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Text("Thông tin",
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
                       ),
-                      const SizedBox(height: 40),
-                      _buildLableTextDetailInfo("Tên:", "minh tam"),
-                      const SizedBox(height: 20),
-                      _buildLableTextDetailInfo("Số điện thoại:", "0522978530"),
-                      const SizedBox(height: 20),
-                      _buildLableTextDetailInfo("Link Zalo:", "0522978530"),
-                      const SizedBox(height: 20),
-                      _buildLableTextDetailInfo("Link Facebook:", "tamtam"),
-                      const SizedBox(height: 20),
-                      _buildLableTextDetailInfo("Tuổi:", "33"),
-                      const SizedBox(height: 20),
-                      _buildLableTextDetailInfo("Giới tính:", "Nam"),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 40),
+                    _buildLableTextDetailInfo("Tên:", "minh tam"),
+                    const SizedBox(height: 20),
+                    _buildLableTextDetailInfo("Số điện thoại:", "0522978530"),
+                    const SizedBox(height: 20),
+                    _buildLableTextDetailInfo("Link Zalo:", "0522978530"),
+                    const SizedBox(height: 20),
+                    _buildLableTextDetailInfo("Link Facebook:", "tamtam"),
+                    const SizedBox(height: 20),
+                    _buildLableTextDetailInfo("Tuổi:", "33"),
+                    const SizedBox(height: 20),
+                    _buildLableTextDetailInfo("Giới tính:", "Nam"),
+                  ],
                 ),
-                Positioned(
-                    right: 0.0,
-                    child: MouseRegion(
-                      cursor: MaterialStateMouseCursor.clickable,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                radius: 14.0,
-                                backgroundColor: Colors.transparent,
-                                child: Icon(Icons.close,
-                                    color: Colors.red, size: 30),
-                              ),
-                            )),
-                      ),
-                    ))
-              ],
-            )),
-      ),
+              ),
+              Positioned(
+                  right: 0.0,
+                  child: MouseRegion(
+                    cursor: MaterialStateMouseCursor.clickable,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              radius: 14.0,
+                              backgroundColor: Colors.transparent,
+                              child: Icon(Icons.close,
+                                  color: Colors.red, size: 30),
+                            ),
+                          )),
+                    ),
+                  ))
+            ],
+          )),
     );
 
     // Show the Dialog
@@ -360,6 +361,55 @@ class _SMSPageState extends State<SMSPage> {
             height: 1,
             color: Colors.grey,
           )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContentFooter() {
+    return Container(
+      color: Color.fromRGBO(128, 128, 128, 0.2),
+      height: 60.0,
+      child: Column(
+        children: [
+          Container(
+            height: 1,
+            color: Colors.grey,
+          ),
+          const SizedBox(height: 5),
+          Row(
+            children: [
+              const SizedBox(width: 10),
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 60,
+                child: TextFormField(
+                  focusNode: _nodeMessage,
+                  controller: messageTextController,
+                  decoration: const InputDecoration(
+                    hintText: "Nhập tin nhắn",
+                    hintStyle: TextStyle(
+                      color: Colors.grey, // Set the placeholder color
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.blue, // Set the focused border color
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey, // Set the enabled border color
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Transform.scale(
+                  scale: 0.7,
+                  child: Image.asset(AppAssets.icSendMessage),
+                )
+            ],
+          ),
         ],
       ),
     );
