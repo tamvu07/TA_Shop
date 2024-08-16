@@ -132,19 +132,17 @@ class _SMSPageState extends State<SMSPage> {
               ),
             ),
             Positioned(
-            right: 20,
-            bottom: 80,
-            child: CircleAvatar(
-              radius: 50.0,
-              backgroundColor:  Color(0xFFF2A43F),
-              child: ClipOval(
-    child: Image.asset(
-      AppAssets.icEyesMessage,
-      fit: BoxFit.cover,
-    ),
-  ),
+              right: 20,
+              bottom: 80,
+              child: CircleAvatar(
+                radius: 50.0,
+                backgroundColor: Color(0xFFF2A43F),
+                child: Transform.scale(
+                  scale: 0.7,
+                  child: Image.asset(AppAssets.icEyesMessage),
+                ),
+              ),
             ),
-          ),
           ],
         ),
       ),
@@ -427,9 +425,9 @@ class _SMSPageState extends State<SMSPage> {
               ),
               const SizedBox(width: 10),
               Transform.scale(
-                  scale: 0.7,
-                  child: Image.asset(AppAssets.icSendMessage),
-                )
+                scale: 0.7,
+                child: Image.asset(AppAssets.icSendMessage),
+              )
             ],
           ),
         ],
