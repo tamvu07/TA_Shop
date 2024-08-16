@@ -136,7 +136,7 @@ class _SMSPageState extends State<SMSPage> {
               bottom: 80,
               child: GestureDetector(
                 onTap: () {
-                  showAlertDetailInfoUser(context);
+                  showAlertDetailSMS(context);
                 },
                 child: CircleAvatar(
                   radius: 50.0,
@@ -435,6 +435,85 @@ class _SMSPageState extends State<SMSPage> {
           ),
         ],
       ),
+    );
+  }
+
+  // show detail SMS
+  showAlertDetailSMS(BuildContext context) {
+    // set up the AlertDialog
+    Dialog alert = Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: Colors.white.withOpacity(1.0)),
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.height / 1.5,
+          child: Stack(
+            children: [
+              const SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Text("Nội dung tin nhắn",
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                      ),
+                    ),
+                    SizedBox(height: 40),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                          "T.A BarBerShop xin chào quý khách.\n Hiện tại Shop đang có chương trình khuyến mãi giảm giá trong các khung giờ 11h, 13h, 14h.\n Quý khách vui lòng truy cập website để biết thêm chi tiết. Website: www.tatocnam.com \n T.A BarBerShop xin chân thành cảm ơn.",
+                          maxLines: 15,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500)),
+                    )
+                  ],
+                ),
+              ),
+              Positioned(
+                  right: 0.0,
+                  child: MouseRegion(
+                    cursor: MaterialStateMouseCursor.clickable,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Transform.scale(
+                              scale: 0.7,
+                              child: Image.asset(AppAssets.icCloseAlert),
+                            ),
+                          )),
+                    ),
+                  ))
+            ],
+          )),
+    );
+
+    // Show the Dialog
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return true;
+          },
+          child: alert,
+        );
+      },
     );
   }
 }
