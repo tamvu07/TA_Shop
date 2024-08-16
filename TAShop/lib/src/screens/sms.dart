@@ -84,7 +84,7 @@ class _SMSPageState extends State<SMSPage> {
 
   @override
   Widget build(BuildContext context) {
-    double appBarHeight = MediaQuery.of(context).padding.top;
+    double appBarHeight = AppBar().preferredSize.height;
     return Scaffold(
       backgroundColor: Color.fromARGB(254, 245, 245, 245),
       appBar: AppBar(
@@ -106,23 +106,45 @@ class _SMSPageState extends State<SMSPage> {
       ),
       body: KeyboardActions(
         config: _buildConfig(context),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                _buildContentTitle(),
-                const SizedBox(height: 20),
-                _buildContentItem("Nguyen An", "222999333", () {
-                  showAlertDetailInfoUser(context);
-                }),
-                const SizedBox(height: 20),
-              ],
+            SizedBox(
+              height: MediaQuery.of(context).size.height - appBarHeight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        const SizedBox(height: 10),
+                        _buildContentTitle(),
+                        const SizedBox(height: 20),
+                        _buildContentItem("Nguyen An", "222999333", () {
+                          showAlertDetailInfoUser(context);
+                        }),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                  _buildContentFooter(),
+                ],
+              ),
             ),
-            _buildContentFooter(),
+            Positioned(
+            right: 20,
+            bottom: 80,
+            child: CircleAvatar(
+              radius: 50.0,
+              backgroundColor:  Color(0xFFF2A43F),
+              child: ClipOval(
+    child: Image.asset(
+      AppAssets.icEyesMessage,
+      fit: BoxFit.cover,
+    ),
+  ),
+            ),
+          ),
           ],
         ),
       ),
