@@ -46,7 +46,8 @@ class _HomePageState extends State<HomePage> {
             }),
           ),
           Expanded(
-            child: _buildItemDetail("ABC", () {
+            child: _buildItemDetail("SMS", () {
+              context.go('/sms');
               print("a2.........2...........");
             }),
           ),

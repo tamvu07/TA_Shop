@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ta_shop/src/screens/add_users_page.dart';
 import 'package:ta_shop/src/screens/home_page.dart';
+import 'package:ta_shop/src/screens/sms.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/home',
@@ -15,6 +16,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/addUsers',
       builder: (BuildContext context, GoRouterState state) => const AddUsersPage(),
+    ),
+    GoRoute(
+      path: '/sms',
+      builder: (BuildContext context, GoRouterState state) => const SMSPage(),
     ),
   ],
 );
